@@ -1,10 +1,87 @@
 ﻿@model IEnumerable<EFwarehouse.Models.Order>
+@using  EFwarehouse.Controllers
 
 @{
-    ViewData["Title"] = "ยอดการขาย";
+	ViewData["Title"] = "รายการขาย";
+	List<ProductQuantitySummary> summaries = (List<ProductQuantitySummary>)ViewData["Summary"];
 }
+<div class="row">
+	<form method="get" asp-action="Summary">
+		<input name="searchSum" type="date"  class="form-control" />
+		@*<input name="searchSum" type="date" asp-format="{0:yyyy-MM-dd}" class="form-control" />*@
+		<input type="submit" value="กรองวันที่" class="btn btn-success" />
+	</form>
+</div>
 
-<form asp-controller="Products" asp-action="Summary">
-
-
-</form>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => summaries[0].ProductId)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => summaries[0].Product_Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => summaries[0].Quantity)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in summaries)
+		{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProductId)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Product_Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Quantity)
+			</td>
+		</tr>
+		}
+		<tr>
+			<td colspan="3" class="text-right">
+				@ViewData["TotalQuantities"]
+			</td>
+		</tr>
+	</tbody>
+</table>
+@*<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.ProductId)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Date)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Quantity_O)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.ProductId)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Date)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Quantity_O)
+				</td>
+			</tr>
+		}
+		<tr>
+			<td colspan="3" class="text-right">
+				@ViewData["TotalQuantities"]
+			</td>
+		</tr>
+	</tbody>
+</table>*@

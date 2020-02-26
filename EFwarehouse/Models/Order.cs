@@ -12,6 +12,7 @@ namespace EFwarehouse.Models
 		public int OrderId { get; set; }
 		[DisplayName("รหัสสินคัา")]
 		public int ProductId { get; set; }
+		public Product Product { get; set; }
 		[DisplayName("วันที่")]
 		public DateTime Date { get; set; }
 		[DisplayName("ราคาสินค้า")]

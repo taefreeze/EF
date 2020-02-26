@@ -8,9 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using EFwarehouse.Data;
 using EFwarehouse.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel;
 
 namespace EFwarehouse.Controllers
 {
+
+	public class ProductQuantitySummary
+	{
+		[DisplayName("รหัสสินค้า")]
+		public int ProductId { get; set; }
+		[DisplayName("ชื่อสินค้า")]
+		public string Product_Name { get; set; }
+		[DisplayName("จำนวนที่ขายได้")]
+		public int Quantity { get; set; }
+	}
+
 	[Authorize]
 	public class ProductsController : Controller
 	{
@@ -34,7 +46,8 @@ namespace EFwarehouse.Controllers
 					}
 					Response.Cookies.Append("OrderID", (lastOrderID + 1).ToString());
 					ViewData["OrderId"] = lastOrderID + 1;
-				} else
+				}
+				else
 				{
 					ViewData["OrderId"] = Request.Cookies["OrderID"];
 				}
@@ -87,10 +100,35 @@ namespace EFwarehouse.Controllers
 			return View(await _context.Products.ToListAsync());
 		}
 
-		public async Task<IActionResult> Summary()
+		public async Task<IActionResult> Summary(DateTime? searchSum)
 		{
-			return View();
+			// IList<> , List<>, IQueryable<>, IEnumerable<>	
+			List<Order> result;
+			if (searchSum != null)
+			{
+				if (searchSum.Value.Year > 2100)
+				{
+					searchSum = searchSum.Value.AddYears(-543);
+				}
+				result = await _context.Order.Include(o => o.Product).Where(o => o.Date.Date.Date == searchSum.Value.Date).ToListAsync();
+			}
+			else
+			{
+				result = await _context.Order.Include(o => o.Product).ToListAsync();
+
+			}
+			ViewData["TotalQuantities"] = result.Select(o => o.Quantity_O).Sum();
+			List<ProductQuantitySummary> summaries = result.GroupBy(o => new
+			{
+				o.ProductId,
+				o.Product.Product_Name
+			}
+			, (key, group) => new ProductQuantitySummary { ProductId = key.ProductId, Product_Name = key.Product_Name, Quantity = group.Sum(o => o.Quantity_O) }).ToList();
+			ViewData["Summary"] = summaries;
+			return View(result);
 		}
+		
+
 		// GET: Products
 		/*public async Task<IActionResult> Index()
         {
