@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EFwarehouse.Models.Order>
+@using  EFwarehouse.Controllers
+
+@{
+	ViewData["Title"] = "รายการขาย";
+	List<ProductQuantitySummary> summariesM = (List<ProductQuantitySummary>)ViewData["SummaryM"];
+}
+<div class="row">
+	<form method="get" asp-action="SummaryMonth">
+		<input name="month" type="month" class="form-control" asp-format="{0:MM-yyyy}" />
+		<input type="submit" value="รายเดือน" class="btn btn-success" />
+	</form>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => summariesM[0].ProductId)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => summariesM[0].Product_Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => summariesM[0].Quantity)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in summariesM)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.ProductId)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Product_Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Quantity)
+				</td>
+			</tr>
+		}
+		<tr>
+			<td colspan="3" class="text-right">
+				@ViewData["TotalQuantitiesM"]
+			</td>
+		</tr>
+	</tbody>
+</table>

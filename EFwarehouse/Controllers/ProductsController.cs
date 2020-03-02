@@ -114,7 +114,7 @@ namespace EFwarehouse.Controllers
 			}
 			else
 			{
-				result = await _context.Order.Include(o => o.Product).ToListAsync();
+				result =   await _context.Order.Include(o => o.Product).ToListAsync();
 
 			}
 			ViewData["TotalQuantities"] = result.Select(o => o.Quantity_O).Sum();
@@ -127,14 +127,32 @@ namespace EFwarehouse.Controllers
 			ViewData["Summary"] = summaries;
 			return View(result);
 		}
-		
 
-		// GET: Products
-		/*public async Task<IActionResult> Index()
-        {
-            var applicationDbContext = _context.Products.Include(p => p.ProductType);
-            return View(await applicationDbContext.ToListAsync());
-        }*/
+		public async Task<IActionResult> SummaryMonth(Monthly model)
+		{ 	
+			List<Order> result;
+			if (model.month.ToString() != null)
+			{
+				if (model.year > 2100)
+				{
+					model.year = model.year - 543;
+				}
+				result = await _context.Order.Include(o => o.Product).Where(o => o.Date.Year == model.year && o.Date.Month == model.month).ToListAsync() ;
+			}
+			else
+			{
+				result = await _context.Order.Include(o => o.Product).ToListAsync();
+			}
+			ViewData["TotalQuantitiesM"] = result.Select(o => o.Quantity_O).Sum();
+			List<ProductQuantitySummary> summariesM = result.GroupBy(o => new
+			{
+				o.ProductId,
+				o.Product.Product_Name
+			}
+			, (key, group) => new ProductQuantitySummary { ProductId = key.ProductId, Product_Name = key.Product_Name, Quantity = group.Sum(o => o.Quantity_O) }).ToList();
+			ViewData["SummaryM"] = summariesM;
+			return View(result);
+		}
 
 		//GET: Products Search
 		public async Task<IActionResult> Index(string searchstring)

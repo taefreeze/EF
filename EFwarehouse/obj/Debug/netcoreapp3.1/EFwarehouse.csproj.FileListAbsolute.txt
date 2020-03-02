@@ -208,8 +208,6 @@ C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Error.cshtml.g.cs
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
-C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\EFwarehouse.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\EFwarehouse.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Views\Orders\Create.cshtml.g.cs
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Views\Orders\Delete.cshtml.g.cs
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Views\Orders\Details.cshtml.g.cs
@@ -224,3 +222,7 @@ C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Views\Products\Sale.cshtml.g.cs
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Views\Products\Bill.cshtml.g.cs
 C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Views\Products\Summary.cshtml.g.cs
+C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\Razor\Views\Products\SummaryMonth.cshtml.g.cs
+C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.LiveShare.dll
+C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\EFwarehouse.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\TaeFreeze\source\repos\EFwarehouse\EFwarehouse\obj\Debug\netcoreapp3.1\EFwarehouse.MvcApplicationPartsAssemblyInfo.cache
