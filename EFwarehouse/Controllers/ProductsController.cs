@@ -128,16 +128,12 @@ namespace EFwarehouse.Controllers
 			return View(result);
 		}
 
-		public async Task<IActionResult> SummaryMonth(Monthly model)
+		public async Task<IActionResult> SummaryMonth(DateTime month)
 		{ 	
 			List<Order> result;
-			if (model.month.ToString() != null)
+			if (month != null)
 			{
-				if (model.year > 2100)
-				{
-					model.year = model.year - 543;
-				}
-				result = await _context.Order.Include(o => o.Product).Where(o => o.Date.Year == model.year && o.Date.Month == model.month).ToListAsync() ;
+				result = await _context.Order.Include(o => o.Product).Where(o => o.Date.Year == month.Year && o.Date.Month == month.Month).ToListAsync() ;
 			}
 			else
 			{
@@ -151,6 +147,8 @@ namespace EFwarehouse.Controllers
 			}
 			, (key, group) => new ProductQuantitySummary { ProductId = key.ProductId, Product_Name = key.Product_Name, Quantity = group.Sum(o => o.Quantity_O) }).ToList();
 			ViewData["SummaryM"] = summariesM;
+			var myMonths = _context.Order.OrderBy(o => o.Date).AsEnumerable().Select(o => new SelectListItem { Text = o.Date.ToString("MM yyyy"), Value = new DateTime(o.Date.Year,o.Date.Month, 1).ToString() });
+			ViewData["myMonths"] = myMonths;
 			return View(result);
 		}
 

@@ -6,8 +6,8 @@
 	List<ProductQuantitySummary> summariesM = (List<ProductQuantitySummary>)ViewData["SummaryM"];
 }
 <div class="row">
-	<form method="get" asp-action="SummaryMonth">
-		<input name="month" type="month" class="form-control" asp-format="{0:MM-yyyy}" />
+	<form method="post" asp-action="SummaryMonth">
+		<select  ></select>
 		<input type="submit" value="รายเดือน" class="btn btn-success" />
 	</form>
 </div>
@@ -31,7 +31,7 @@
 		{
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => item.ProductId)
+					@Html.DisplayFor(modelItem => item.ProductId) 
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Product_Name)
